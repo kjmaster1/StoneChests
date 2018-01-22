@@ -1,0 +1,60 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "stonechests:stone_chest",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"variant": {
+			"cobble": {
+				"textures": {
+					"particle": "minecraft:blocks/cobblestone",
+					"texture": "stonechests:model/chest/cobble_chest"
+				}
+			},
+			"stone": {
+				"textures": {
+					"particle": "minecraft:blocks/stone",
+					"texture": "stonechests:model/chest/stone_chest"
+				}
+			},
+			"granite": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_granite",
+					"texture": "stonechests:model/chest/granite_chest"
+				}
+			},
+			"granitesmooth": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_granite_smooth",
+					"texture": "stonechests:model/chest/smooth_granite_chest"
+				}
+			},
+			"diorite": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_diorite",
+					"texture": "stonechests:model/chest/diorite_chest"
+				}
+			},
+			"dioritesmooth": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_diorite_smooth",
+					"texture": "stonechests:model/chest/smooth_diorite_chest"
+				}
+			},
+			"andesite": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_andesite",
+					"texture": "stonechests:model/chest/andesite_chest"
+				}
+			},
+			"andesitesmooth": {
+				"textures": {
+					"particle": "minecraft:blocks/stone_andesite_smooth",
+					"texture": "stonechests:model/chest/smooth_andesite_chest"
+				}
+			}
+		},
+		"inventory": { "model": "minecraft:dirt" }
+	}
+}
