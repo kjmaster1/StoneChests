@@ -1,11 +1,9 @@
 package com.kjmaster.stonechests.common;
 
 import com.kjmaster.stonechests.client.GuiStoneChest;
-import com.kjmaster.stonechests.common.blocks.BlockStoneChest;
 import com.kjmaster.stonechests.common.blocks.tile.TileStoneChest;
 import com.kjmaster.stonechests.common.blocks.tile.container.ContainerStoneChest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

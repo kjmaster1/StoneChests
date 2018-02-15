@@ -1,18 +1,13 @@
 package com.kjmaster.stonechests.common.blocks;
 
-import com.google.common.collect.ImmutableList;
 import com.kjmaster.stonechests.StoneChests;
 import com.kjmaster.stonechests.common.blocks.item.ItemStoneChest;
 import com.kjmaster.stonechests.common.util.BlockNames;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,9 +19,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class StoneChestBlocks {
 
     @GameRegistry.ObjectHolder(BlockNames.STONE_CHEST)
-    public static BlockStoneChest stoneChestBlock;
+    public static final BlockStoneChest stoneChestBlock = null;
     @GameRegistry.ObjectHolder(BlockNames.STONE_CHEST)
-    public static Item stoneChestItemBlock;
+    public static final Item stoneChestItemBlock = null;
 
     @Mod.EventBusSubscriber(modid = StoneChests.MODID)
     public static class Registration {
@@ -34,7 +29,7 @@ public class StoneChestBlocks {
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             IForgeRegistry<Block> blockRegistry = event.getRegistry();
 
-            blockRegistry.register(new BlockStoneChest());
+            blockRegistry.register(new BlockStoneChest("stone_chest", Material.ROCK, CreativeTabs.DECORATIONS, 3.0F, 30.0F, "pickaxe", 1));
 
             for (StoneChestType type : StoneChestType.values()) {
                 if (type.clazz != null) {

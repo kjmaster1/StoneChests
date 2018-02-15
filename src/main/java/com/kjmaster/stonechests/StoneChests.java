@@ -2,13 +2,8 @@ package com.kjmaster.stonechests;
 
 import com.kjmaster.stonechests.common.CommonProxy;
 import com.kjmaster.stonechests.common.ModGuiHandler;
-import com.kjmaster.stonechests.common.blocks.BlockStoneChest;
-import com.kjmaster.stonechests.common.blocks.StoneChestType;
 import com.kjmaster.stonechests.common.util.MissingMappingsHandler;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,9 +11,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-@Mod(modid = StoneChests.MODID, version = StoneChests.VERSION, name = StoneChests.NAME)
+@Mod(modid = StoneChests.MODID, version = StoneChests.VERSION, name = StoneChests.NAME, dependencies = "required-after:kjlib")
 public class StoneChests
 {
     @SidedProxy(clientSide = "com.kjmaster.stonechests.client.ClientProxy", serverSide = "com.kjmaster.stonechests.common.CommonProxy")

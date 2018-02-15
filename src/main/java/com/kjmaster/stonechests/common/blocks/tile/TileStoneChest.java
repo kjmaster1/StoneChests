@@ -132,7 +132,7 @@ public class TileStoneChest extends TileEntityLockableLoot implements ITickable
     @Override
     public String getName()
     {
-        return this.hasCustomName() ? this.customName : this.getType().name();
+        return this.hasCustomName() ? this.customName : "container." + this.getType().name().toLowerCase() + ".chest";
     }
 
     @Override

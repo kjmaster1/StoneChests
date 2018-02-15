@@ -10,8 +10,10 @@ import net.minecraft.util.ResourceLocation;
 public class GuiStoneChest extends GuiContainer {
 
     private static final ResourceLocation CHEST_GUI_TEXTURE = new ResourceLocation("textures/gui/container/generic_54.png");
+    private IInventory chest;
     public GuiStoneChest(StoneChestType type, IInventory player, IInventory chest) {
         super(new ContainerStoneChest(player, chest, type));
+        this.chest = chest;
         this.xSize = 176;
         this.ySize = 168;
         this.allowUserInput = false;
@@ -32,5 +34,10 @@ public class GuiStoneChest extends GuiContainer {
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, 3 * 18 + 17);
         this.drawTexturedModalRect(i, j + 3 * 18 + 17, 0, 126, this.xSize, 96);
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        this.fontRenderer.drawString(this.chest.getDisplayName().getUnformattedText(), 8, 6, 4210752);
     }
 }

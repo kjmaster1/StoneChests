@@ -1,10 +1,9 @@
 package com.kjmaster.stonechests.common.blocks;
 
+import com.kjmaster.kjlib.common.blocks.BlockBase;
 import com.kjmaster.stonechests.StoneChests;
 import com.kjmaster.stonechests.common.ModGuiHandler;
 import com.kjmaster.stonechests.common.blocks.tile.TileStoneChest;
-import com.kjmaster.stonechests.common.util.BlockNames;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -27,18 +26,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class BlockStoneChest extends Block {
+public class BlockStoneChest extends BlockBase {
 
     public static final PropertyEnum<StoneChestType> VARIANT_PROP = PropertyEnum.create("variant", StoneChestType.class);
 
-    public BlockStoneChest() {
-        super(Material.ROCK);
+    public BlockStoneChest(String name, Material mat, CreativeTabs tab, float hardness, float resistance, String tool, int harvest) {
+        super(name, mat, tab, hardness, resistance, tool, harvest);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, StoneChestType.COBBLE));
-
-        this.setHardness(3.0F);
-        this.setRegistryName(new ResourceLocation(BlockNames.STONE_CHEST));
-        this.setUnlocalizedName("StoneChest");
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
     }
 
     @Override
@@ -153,12 +147,17 @@ public class BlockStoneChest extends Block {
 
         if (te != null && te instanceof TileStoneChest)
         {
-            TileStoneChest teic = (TileStoneChest) te;
+            TileStoneChest tesc = (TileStoneChest) te;
 
-            teic.wasPlaced(placer, stack);
-            teic.setFacing(placer.getHorizontalFacing().getOpposite());
+            tesc.wasPlaced(placer, stack);
+            tesc.setFacing(placer.getHorizontalFacing().getOpposite());
 
             worldIn.notifyBlockUpdate(pos, state, state, 3);
+
+            if (stack.hasDisplayName())
+            {
+                tesc.setCustomName(stack.getDisplayName());
+            }
         }
     }
 
