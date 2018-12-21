@@ -1,0 +1,18 @@
+{
+  "id": "stonechests",
+  "name": "Stone Chests",
+  "description": "Adds stone chests to Minecraft.",
+  "version": "1.0.1",
+  "side": "universal",
+  "initializers": [
+  "net.kjmaster.stonechests.StoneChests",
+  "net.kjmaster.stonechests.client.ClientInit"
+  ],
+  "requires": {
+    "fabric": "*"
+  },
+  "mixins": {
+    "client": "stonechests.client.json",
+    "common": "stonechests.common.json"
+  }
+}

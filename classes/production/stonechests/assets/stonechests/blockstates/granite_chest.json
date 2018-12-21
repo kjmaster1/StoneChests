@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "stonechests:block/granite_chest" }
+    }
+}

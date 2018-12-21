@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.kjmaster.stonechests.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ItemDynamicRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

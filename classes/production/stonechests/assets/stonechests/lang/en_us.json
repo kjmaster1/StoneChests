@@ -1,0 +1,10 @@
+{
+  "block.stonechests.stone_chest": "Stone Chest",
+  "block.stonechests.cobble_chest": "Cobblestone Chest",
+  "block.stonechests.granite_chest": "Granite Chest",
+  "block.stonechests.granite_smooth_chest": "Polished Granite Chest",
+  "block.stonechests.diorite_chest": "Diorite Chest",
+  "block.stonechests.diorite_smooth_chest": "Polished Diorite Chest",
+  "block.stonechests.andesite_chest": "Andesite Chest",
+  "block.stonechests.andesite_smooth_chest": "Polished Andesite Chest"
+}
