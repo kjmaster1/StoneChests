@@ -44,7 +44,7 @@ public class ModBlocks {
         dioriteChestBlock = register(new BlockStoneChest("diorite_chest"));
         dioriteSmoothChestBlock = register(new BlockStoneChest("diorite_smooth_chest"));
         andesiteChestBlock = register(new BlockStoneChest("andesite_chest"));
-        andesiteSmoothChestBlock = new BlockStoneChest("andesite_smooth_chest");
+        andesiteSmoothChestBlock = register(new BlockStoneChest("andesite_smooth_chest"));
         TILE_STONE_CHEST = register("tile_stone_chest", BlockEntityType.Builder.create(TileStoneChest::new,
                 stoneChestBlock, cobbleChestBlock, graniteChestBlock, graniteSmoothChestBlock,
                 dioriteChestBlock, dioriteSmoothChestBlock, andesiteChestBlock, andesiteSmoothChestBlock));
