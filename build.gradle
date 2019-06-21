@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.1.0-SNAPSHOT'
+	id 'fabric-loom' version '0.2.3-SNAPSHOT'
 }
 
 sourceCompatibility = 1.8
@@ -12,10 +12,22 @@ minecraft {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:18w50a"
-	mappings "net.fabricmc:yarn:18w50a.53"
-	modCompile "net.fabricmc:fabric-loader:0.2.0.71"
+	minecraft "com.mojang:minecraft:1.14.2"
+	mappings "net.fabricmc:yarn:1.14.2+build.7"
+	modCompile "net.fabricmc:fabric-loader:0.4.8+build.155"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modCompile "net.fabricmc:fabric:0.1.1.58"
+	modCompile "net.fabricmc.fabric-api:fabric-api:0.3.0+build.185"
+}
+
+//reflects the version property into fabric.mod.json, so you don't have to manually copy it over
+processResources {
+	inputs.property "version", project.version
+	from(sourceSets.main.resources.srcDirs) {
+		include "fabric.mod.json"
+		expand version: project.version
+	}
+	from(sourceSets.main.resources.srcDirs) {
+		exclude "fabric.mod.json"
+	}
 }
