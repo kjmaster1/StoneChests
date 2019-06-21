@@ -1,18 +1,27 @@
 {
+  "schemaVersion": 1,
   "id": "stonechests",
+  "version": "$version",
+
   "name": "Stone Chests",
   "description": "Adds stone chests to Minecraft.",
-  "version": "1.0.1",
-  "side": "universal",
-  "initializers": [
-  "net.kjmaster.stonechests.StoneChests",
-  "net.kjmaster.stonechests.client.ClientInit"
+  "licence": "GPL v3",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.kjmaster.stonechests.StoneChests"
+    ],
+    "client": [
+      "net.kjmaster.stonechests.client.ClientInit"
+    ]
+  },
+  "mixins": [
+    "stonechests.client.json",
+    "stonechests.common.json"
   ],
   "requires": {
+    "fabricloader": ">=0.4.0",
     "fabric": "*"
-  },
-  "mixins": {
-    "client": "stonechests.client.json",
-    "common": "stonechests.common.json"
   }
 }

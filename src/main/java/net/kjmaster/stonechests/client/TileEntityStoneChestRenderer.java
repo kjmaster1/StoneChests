@@ -8,30 +8,30 @@ import net.minecraft.block.ChestBlock;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.entity.model.ChestDoubleEntityModel;
 import net.minecraft.client.render.entity.model.ChestEntityModel;
+import net.minecraft.client.render.entity.model.LargeChestEntityModel;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 public class TileEntityStoneChestRenderer extends BlockEntityRenderer<TileStoneChest> {
 
     private final ChestEntityModel modelSingleChest = new ChestEntityModel();
-    private final ChestEntityModel modelDoubleChest = new ChestDoubleEntityModel();
+    private final ChestEntityModel modelDoubleChest = new LargeChestEntityModel();
 
     @Override
-    public void render(TileStoneChest var1, double var2, double var4, double var6, float var8, int var9) {
+    public void render(TileStoneChest be, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.enableDepthTest();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
-        BlockState var10 = var1.hasWorld() ? var1.getCachedState() : (BlockState) Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-        ChestType var11 = var10.contains(ChestBlock.field_10770) ? (ChestType)var10.get(ChestBlock.field_10770) : ChestType.SINGLE;
-        if (var11 != ChestType.LEFT) {
-            boolean var12 = var11 != ChestType.SINGLE;
-            ChestEntityModel var13 = this.method_3562(var1, var9, var12);
-            if (var9 >= 0) {
+        BlockState state = be.hasWorld() ? be.getCachedState() : Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
+        ChestType type = state.contains(ChestBlock.CHEST_TYPE) ? state.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
+        if (type != ChestType.LEFT) {
+            boolean isLarge = type != ChestType.SINGLE;
+            ChestEntityModel model = this.method_3562(be, destroyStage, isLarge);
+            if (destroyStage >= 0) {
                 GlStateManager.matrixMode(5890);
                 GlStateManager.pushMatrix();
-                GlStateManager.scalef(var12 ? 8.0F : 4.0F, 4.0F, 1.0F);
+                GlStateManager.scalef(isLarge ? 8.0F : 4.0F, 4.0F, 1.0F);
                 GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
                 GlStateManager.matrixMode(5888);
             } else {
@@ -40,21 +40,21 @@ public class TileEntityStoneChestRenderer extends BlockEntityRenderer<TileStoneC
 
             GlStateManager.pushMatrix();
             GlStateManager.enableRescaleNormal();
-            GlStateManager.translatef((float)var2, (float)var4 + 1.0F, (float)var6 + 1.0F);
+            GlStateManager.translatef((float)x, (float)y + 1.0F, (float)z + 1.0F);
             GlStateManager.scalef(1.0F, -1.0F, -1.0F);
-            float var14 = ((Direction)var10.get(ChestBlock.FACING)).asRotation();
-            if ((double)Math.abs(var14) > 1.0E-5D) {
+            float rotation = (state.get(ChestBlock.FACING)).asRotation();
+            if ((double)Math.abs(rotation) > 1.0E-5D) {
                 GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-                GlStateManager.rotatef(var14, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotatef(rotation, 0.0F, 1.0F, 0.0F);
                 GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
             }
 
-            this.method_3561(var1, var8, var13);
-            var13.method_2799();
+            this.method_3561(be, partialTicks, model);
+            model.method_2799();
             GlStateManager.disableRescaleNormal();
             GlStateManager.popMatrix();
             GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            if (var9 >= 0) {
+            if (destroyStage >= 0) {
                 GlStateManager.matrixMode(5890);
                 GlStateManager.popMatrix();
                 GlStateManager.matrixMode(5888);
@@ -63,21 +63,21 @@ public class TileEntityStoneChestRenderer extends BlockEntityRenderer<TileStoneC
         }
     }
 
-    private ChestEntityModel method_3562(TileStoneChest var1, int var2, boolean var3) {
-        Identifier var4;
-        if (var2 >= 0) {
-            var4 = DESTROY_STAGE_TEXTURES[var2];
+    private ChestEntityModel method_3562(TileStoneChest be, int destroyStage, boolean isLarge) {
+        Identifier texId;
+        if (destroyStage >= 0) {
+            texId = DESTROY_STAGE_TEXTURES[destroyStage];
         } else {
-            var4 = var3 ? var1.getStoneChestType().getDoubleModelTexture() : var1.getStoneChestType().getModelTexture();
+            texId = isLarge ? be.getStoneChestType().getDoubleModelTexture() : be.getStoneChestType().getModelTexture();
         }
-        this.bindTexture(var4);
-        return var3 ? this.modelDoubleChest : this.modelSingleChest;
+        this.bindTexture(texId);
+        return isLarge ? this.modelDoubleChest : this.modelSingleChest;
     }
 
-    private void method_3561(TileStoneChest var1, float var2, ChestEntityModel var3) {
-        float var4 = ((ChestAnimationProgress)var1).getAnimationProgress(var2);
-        var4 = 1.0F - var4;
-        var4 = 1.0F - var4 * var4 * var4;
-        var3.method_2798().pitch = -(var4 * 1.5707964F);
+    private void method_3561(TileStoneChest be, float partialTicks, ChestEntityModel model) {
+        float progress = ((ChestAnimationProgress)be).getAnimationProgress(partialTicks);
+        progress = 1.0F - progress;
+        progress = 1.0F - progress * progress * progress;
+        model.method_2798().pitch = -(progress * 1.5707964F);
     }
 }

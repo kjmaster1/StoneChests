@@ -2,9 +2,9 @@ package net.kjmaster.stonechests.block;
 
 import net.kjmaster.stonechests.StoneChests;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.StringIdentifiable;
 
-public enum StoneChestType implements StringRepresentable {
+public enum StoneChestType implements StringIdentifiable {
 
     COBBLE("cobble_chest", "cobble_chest.png", 0),
     STONE("stone_chest", "stone_chest.png", 1),
